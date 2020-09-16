@@ -48,21 +48,38 @@ class VectorEspecial{
 	}
 	public void aumentarTamañoDelArreglo(int magnitud) {
 		int[] newArray = Arrays.copyOf(edades, edades.length + magnitud);
-		/*for (int i = edades.length; i < newArray.length+magnitud; i++) {
-			newArray[i] = 0;
-		}*/
 		this.setEdades(newArray);
 	}
 	public void disminuirTamañoDelArreglo(int magnitud) {
-		int[] newArray = Arrays.copyOf(edades, edades.length - magnitud);
-		this.setEdades(newArray);
+		try {
+			int[] newArray = Arrays.copyOf(edades, edades.length - magnitud);
+			this.setEdades(newArray);
+		} catch (NegativeArraySizeException e) {
+			System.out.println("la magnitud no puede ser igual o superior a la longitud original");
+		}
+		
 	}
-	public void insertarElementoPosicionEspecifica(int posicion) {
+	public void insertarElementoPosicionEspecifica(int posicion, int elemento) {
+		try {
+			this.getEdades()[posicion-1]=elemento;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("solo se puede tener de 1 a n posiciones, no se puede exceder o ser inferior o igual a 0");
+		}
 	}
 	public void eliminarElementoPosicionEspecifica(int posicion) {
+		try {
+			this.getEdades()[posicion-1]=0;
+		} catch (ArrayIndexOutOfBoundsException e) {
+			System.out.println("solo se puede tener de 1 a n posiciones, no se puede exceder o ser inferior o igual a 0");
+		}
 	}
 	public void invertirElVector() {
-		
+		int[] newArray = Arrays.copyOf(edades, edades.length);
+		int edades[]=this.getEdades();
+		for (int i = 0; i < newArray.length; i++) {
+			newArray[i]=edades[edades.length-1-i];
+		}
+		this.setEdades(newArray);
 	}
 
 }
@@ -100,6 +117,13 @@ public class PruevaVectorEspecial {
 		ve0.disminuirTamañoDelArreglo(3);
 		ve0.mostrarVector();
 		System.out.println("cantidad de elementos: "+ve0.obtenerCantidadElementos());
+		
+		ve0.insertarElementoPosicionEspecifica(3, 5);
+		ve0.mostrarVector();
+		ve0.eliminarElementoPosicionEspecifica(3);
+		ve0.mostrarVector();
+		ve0.invertirElVector();
+		ve0.mostrarVector();
 		
 	}
 
