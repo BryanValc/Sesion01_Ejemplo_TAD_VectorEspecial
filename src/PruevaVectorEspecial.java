@@ -26,10 +26,37 @@ class VectorEspecial{
 			edades[i]=input.nextInt();
 		}
 	}
-	public void MostrarVectorr() {
+	public void mostrarVectorr() {
 		System.out.println(Arrays.toString(edades));
 	}
+	public int obtenerPosicionInicio() {
+		return (Integer) null;
+	}
+	public int obtenerPosicionFin() {
+		return (Integer) null;
+	}
+	public int obtenerCantidadElementos() {
+		return (Integer) null;
+	}
+	public int obtenerElementoInicio() {
+		return (Integer) null;
+	}
+	public int obtenerElementoFin() {
+		return (Integer) null;
+	}
+	public void aumentarTamañoDelArreglo(int magnitud) {
+	}
+	public void disminuirTamañoDelArreglo(int magnitud) {
+	}
 	
+	public void insertarElementoPosicionEspecifica(int posicion) {
+	}
+	public void eliminarElementoPosicionEspecifica(int posicion) {
+	}
+	public void invertirElVector() {
+		
+	}
+
 }
 
 public class PruevaVectorEspecial {
@@ -46,7 +73,7 @@ public class PruevaVectorEspecial {
 		
 		VectorEspecial ve3 = new VectorEspecial(3);
 		ve3.llenarVector();
-		ve3.MostrarVectorr();
+		ve3.mostrarVectorr();
 	}
 
 }
