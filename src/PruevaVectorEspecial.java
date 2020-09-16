@@ -14,7 +14,7 @@ class VectorEspecial{
 	}
 	
 	public int[] getEdades(){
-		return null;
+		return this.edades;
 	}
 	public void setEdades(int[] edades){
 		this.edades = edades;
@@ -30,19 +30,19 @@ class VectorEspecial{
 		System.out.println(Arrays.toString(edades));
 	}
 	public int obtenerPosicionInicio() {
-		return (Integer) null;
+		return this.edades[0];
 	}
 	public int obtenerPosicionFin() {
-		return (Integer) null;
+		return this.edades[this.edades.length-1];
 	}
 	public int obtenerCantidadElementos() {
-		return (Integer) null;
+		return this.edades.length;
 	}
-	public int obtenerElementoInicio() {
-		return (Integer) null;
+	public void mostrarElementoInicio() {
+		System.out.println(this.edades[0]);
 	}
-	public int obtenerElementoFin() {
-		return (Integer) null;
+	public void mostrarElementoFin() {
+		System.out.println(this.edades[this.edades.length-1]);
 	}
 	public void aumentarTamañoDelArreglo(int magnitud) {
 	}
