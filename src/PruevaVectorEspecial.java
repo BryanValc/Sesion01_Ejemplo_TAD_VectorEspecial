@@ -23,9 +23,19 @@ class VectorEspecial{
 	}
 	
 	public void llenarVector() {
+		int err=0;
 		for (int i = 0; i < edades.length; i++) {
 			System.out.println("ingresa la edad "+(i+1)+": ");
-			edades[i]=input.nextInt();
+			if(err>0) {
+				input.nextLine();
+			}
+			try {
+				edades[i]=input.nextInt();
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("solo se pueden ingresar numeros enteros");
+				err++;
+				i--;
+			}
 		}
 	}
 	public void mostrarVector() {
@@ -64,6 +74,8 @@ class VectorEspecial{
 			this.getEdades()[posicion-1]=elemento;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("solo se puede tener de 1 a n posiciones, no se puede exceder o ser inferior o igual a 0");
+		} catch (java.util.InputMismatchException e) {
+			System.out.println("solo se pueden ingresar numeros enteros");	
 		}
 	}
 	public void eliminarElementoPosicionEspecifica(int posicion) {
