@@ -4,7 +4,6 @@ import java.util.Scanner;
 class VectorEspecial{
 	
 	private int edades[];
-	int tamaño=0;
 	Scanner input = new Scanner(System.in);
 	
 	public VectorEspecial() {
@@ -12,7 +11,6 @@ class VectorEspecial{
 	}
 	public VectorEspecial(int tamaño) {
 		this.edades = new int[tamaño];
-		this.tamaño=tamaño;
 	}
 	
 	public int[] getEdades(){
@@ -99,20 +97,7 @@ class VectorEspecial{
 public class PruevaVectorEspecial {
 
 	public static void main(String[] args) {
-		/*
-		VectorEspecial ve = new VectorEspecial();
-		System.out.println(ve);
-		System.out.println(ve.getEdades());
-		
-		VectorEspecial ve2 = new VectorEspecial(5);
-		System.out.println(ve2.getEdades());
-		//System.out.println(ve2.getEdades().toString());
-		
-		VectorEspecial ve3 = new VectorEspecial(3);
-		ve3.llenarVector();
-		ve3.mostrarVectorr();
-		*/
-		
+
 		VectorEspecial ve0 = new VectorEspecial(5);
 		ve0.llenarVector();
 		ve0.mostrarVector();
