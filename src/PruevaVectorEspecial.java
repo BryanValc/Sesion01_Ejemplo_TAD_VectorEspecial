@@ -103,6 +103,27 @@ class VectorEspecial{
 		this.setEdades(newArray);
 	}
 
+	public int validacionEntero() {
+		int ret = 0;
+		boolean err = false;
+		do {
+			try {
+				ret = input.nextInt();
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("entrada no valida, intente de nuevo:");
+				input.nextLine();
+				err=true;
+				continue;
+			}
+			if (ret>0) {
+				err=false;
+			}else {
+				System.out.println("solo números positivos");
+				err=true;
+			}
+		}while(err);
+		return ret;
+	}
 }
 
 public class PruevaVectorEspecial {
@@ -116,6 +137,9 @@ public class PruevaVectorEspecial {
 		VectorEspecial ve0 = new VectorEspecial();
 		
 		do {
+			System.out.println("tamaño del vector:");
+			VectorEspecial ve1 = new VectorEspecial(ve0.validacionEntero());
+			
 			System.out.println("1)llenar vector \n 2)mostrar vector \n 3)obtener posicion inicio \n 4)obtener posicion final \n 5)obtener cantidad elementos \n 6)mostrar elemento inicio"
 					+ " \n 7)mostrar elemento final \n 8)aumentar tamaño del arreglo \n 9)disminuir tamaño del arreglo \n 10)insertar elemento posicion especifica "
 					+ "\n 11)eliminar elemento posicion especifica \n 12)invertir el vector \n 13)salir");
@@ -130,7 +154,7 @@ public class PruevaVectorEspecial {
 				System.out.println("opcion no valida");
 			}
 			switch (opc) {
-			case 1:	;break;
+			case 1:	ve1.llenarVector();;break;
 			case 2:	;break;
 			case 3:	;break;
 			case 4:	;break;
@@ -145,9 +169,6 @@ public class PruevaVectorEspecial {
 			case 13:;break;
 			default:break;
 			}
-			
-			
-			
 			
 		} while (salir==false);
 		
