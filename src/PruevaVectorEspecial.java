@@ -55,10 +55,18 @@ class VectorEspecial{
 		System.out.println(this.edades[this.edades.length-1]);
 	}
 	public void aumentarTamañoDelArreglo(int magnitud) {
+		while (magnitud<1) {
+			System.out.println("la magnitud para aumentar el tamaño debe ser positiva, ingresela de nuevo: ");
+			magnitud = input.nextInt();
+		}
 		int[] newArray = Arrays.copyOf(edades, edades.length + magnitud);
 		this.setEdades(newArray);
 	}
 	public void disminuirTamañoDelArreglo(int magnitud) {
+		while (magnitud<1) {
+			System.out.println("la magnitud para disminuir el tamaño debe ser positiva, ingresela de nuevo: ");
+			magnitud = input.nextInt();
+		}
 		try {
 			int[] newArray = Arrays.copyOf(edades, edades.length - magnitud);
 			this.setEdades(newArray);
