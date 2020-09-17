@@ -108,30 +108,51 @@ class VectorEspecial{
 public class PruevaVectorEspecial {
 
 	public static void main(String[] args) {
+		
+		Scanner input = new Scanner(System.in);
 
-		VectorEspecial ve0 = new VectorEspecial(5);
-		ve0.llenarVector();
-		ve0.mostrarVector();
-		System.out.println("posicion inicial: "+ve0.obtenerPosicionInicio());
-		System.out.println("posicion final: "+ve0.obtenerPosicionFin());
-		System.out.println("cantidad de elementos: "+ve0.obtenerCantidadElementos());
-		ve0.mostrarElementoInicio();
-		ve0.mostrarElementoFin();
+		boolean salir = false;
+		byte opc = 0;
+		VectorEspecial ve0 = new VectorEspecial();
 		
-		ve0.aumentarTamañoDelArreglo(3);
-		ve0.mostrarVector();
-		System.out.println("cantidad de elementos: "+ve0.obtenerCantidadElementos());
+		do {
+			System.out.println("1)llenar vector \n 2)mostrar vector \n 3)obtener posicion inicio \n 4)obtener posicion final \n 5)obtener cantidad elementos \n 6)mostrar elemento inicio"
+					+ " \n 7)mostrar elemento final \n 8)aumentar tamaño del arreglo \n 9)disminuir tamaño del arreglo \n 10)insertar elemento posicion especifica "
+					+ "\n 11)eliminar elemento posicion especifica \n 12)invertir el vector \n 13)salir");
+			
+			try {
+				opc = input.nextByte();
+			} catch (java.util.InputMismatchException e) {
+				System.out.println("entrada no valida");
+				input.nextLine();
+			}
+			if (opc<1||opc>13) {
+				System.out.println("opcion no valida");
+			}
+			switch (opc) {
+			case 1:	;break;
+			case 2:	;break;
+			case 3:	;break;
+			case 4:	;break;
+			case 5:	;break;
+			case 6:	;break;
+			case 7:	;break;
+			case 8:	;break;
+			case 9:	;break;
+			case 10:;break;
+			case 11:;break;
+			case 12:;break;
+			case 13:;break;
+			default:break;
+			}
+			
+			
+			
+			
+		} while (salir==false);
 		
-		ve0.disminuirTamañoDelArreglo(3);
-		ve0.mostrarVector();
-		System.out.println("cantidad de elementos: "+ve0.obtenerCantidadElementos());
 		
-		ve0.insertarElementoPosicionEspecifica(3, 5);
-		ve0.mostrarVector();
-		ve0.eliminarElementoPosicionEspecifica(3);
-		ve0.mostrarVector();
-		ve0.invertirElVector();
-		ve0.mostrarVector();
+		
 		
 	}
 
