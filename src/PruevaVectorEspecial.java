@@ -21,19 +21,9 @@ class VectorEspecial{
 	}
 	
 	public void llenarVector() {
-		int err=0;
 		for (int i = 0; i < edades.length; i++) {
 			System.out.println("ingresa la edad "+(i+1)+": ");
-			if(err>0) {
-				input.nextLine();
-			}
-			try {
-				edades[i]=input.nextInt();
-			} catch (java.util.InputMismatchException e) {
-				System.out.println("solo se pueden ingresar numeros enteros");
-				err++;
-				i--;
-			}
+			edades[i]=this.validacionEntero();
 		}
 	}
 	public void mostrarVector() {
@@ -64,35 +54,52 @@ class VectorEspecial{
 		System.out.println("el vector se aumentó éxitosamete en "+magnitud);
 	}
 	public void disminuirTamañoDelArreglo(int magnitud) {
-		while (magnitud<1) {
-			System.out.println("la magnitud para disminuir el tamaño debe ser positiva, ingresela de nuevo: ");
-			magnitud = input.nextInt();
-		}
-		try {
-			int[] newArray = Arrays.copyOf(edades, edades.length - magnitud);
-			this.setEdades(newArray);
-		} catch (NegativeArraySizeException e) {
-			System.out.println("la magnitud no puede ser igual o superior a la longitud original");
-		}
+		boolean err=false;
+		do {
+			err=false;
+			try {
+				int[] newArray = Arrays.copyOf(edades, edades.length - magnitud);
+				this.setEdades(newArray);
+			} catch (NegativeArraySizeException e) {
+				do {
+					System.out.println("la magnitud no puede ser igual o superior a la longitud original, intente de nuevo:");
+					magnitud=input.nextInt();
+					err=true;
+					continue;
+				} while (magnitud>this.obtenerCantidadElementos());
+			}
+		} while (err);
 		System.out.println("el vector se disminuyó éxitosamete en "+magnitud);
 	}
 	public void insertarElementoPosicionEspecifica(int posicion, int elemento) {
-		try {
-			this.getEdades()[posicion-1]=elemento;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("solo se puede tener de 1 a n posiciones, no se puede exceder o ser inferior o igual a 0");
-		} catch (java.util.InputMismatchException e) {
-			System.out.println("solo se pueden ingresar numeros enteros");	
-		}
+		boolean err=false;
+		do {
+			err=false;
+			try {
+				this.getEdades()[posicion-1]=elemento;
+			} catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println("solo se puede tener de 1 a n posiciones, no se puede exceder o ser inferior o igual a 0, ingrese nuevamente los datos");
+				System.out.println("posicion: ");
+				posicion=this.validacionEntero();
+				System.out.println("elemento: ");
+				elemento=this.validacionEntero();
+				err=true;
+			}
+		} while (err);
 	}
 	public void eliminarElementoPosicionEspecifica(int posicion) {
-		try {
-			this.getEdades()[posicion-1]=0;
-		} catch (ArrayIndexOutOfBoundsException e) {
-			System.out.println("solo se puede tener de 1 a n posiciones, no se puede exceder o ser inferior o igual a 0");
-		} catch (java.util.InputMismatchException e) {
-			System.out.println("solo se pueden ingresar numeros enteros");	
-		}
+		boolean err=false;
+		do {
+			err=false;
+			try {
+				this.getEdades()[posicion-1]=0;
+			} catch (ArrayIndexOutOfBoundsException e) {
+				System.out.println("solo se puede tener de 1 a n posiciones, no se puede exceder o ser inferior o igual a 0, vuelva a introducir la posicion: ");
+				posicion = this.validacionEntero();
+				err=true;
+			}
+		} while (err);
+		System.out.println("elemento eliminado exitosamente");
 	}
 	public void invertirElVector() {
 		int[] newArray = Arrays.copyOf(edades, edades.length);
@@ -101,6 +108,7 @@ class VectorEspecial{
 			newArray[i]=edades[edades.length-1-i];
 		}
 		this.setEdades(newArray);
+		System.out.println("vector invertido correctamente");
 	}
 
 	public int validacionEntero() {
@@ -135,12 +143,11 @@ public class PruevaVectorEspecial {
 		boolean salir = false;
 		byte opc = 0;
 		VectorEspecial ve0 = new VectorEspecial();
+		System.out.println("tamaño del vector:");
+		VectorEspecial ve1 = new VectorEspecial(ve0.validacionEntero());
 		
 		do {
-			System.out.println("tamaño del vector:");
-			VectorEspecial ve1 = new VectorEspecial(ve0.validacionEntero());
-			
-			System.out.println("1)llenar vector \n 2)mostrar vector \n 3)obtener posicion inicio \n 4)obtener posicion final \n 5)obtener cantidad elementos \n 6)mostrar elemento inicio"
+			System.out.println(" 1)llenar vector \n 2)mostrar vector \n 3)obtener posicion inicio \n 4)obtener posicion final \n 5)obtener cantidad elementos \n 6)mostrar elemento inicio"
 					+ " \n 7)mostrar elemento final \n 8)aumentar tamaño del arreglo \n 9)disminuir tamaño del arreglo \n 10)insertar elemento posicion especifica "
 					+ "\n 11)eliminar elemento posicion especifica \n 12)invertir el vector \n 13)salir");
 			
@@ -153,28 +160,42 @@ public class PruevaVectorEspecial {
 			if (opc<1||opc>13) {
 				System.out.println("opcion no valida");
 			}
+			
 			switch (opc) {
-			case 1:	ve1.llenarVector();;break;
-			case 2:	;break;
-			case 3:	;break;
-			case 4:	;break;
-			case 5:	;break;
-			case 6:	;break;
-			case 7:	;break;
-			case 8:	;break;
-			case 9:	;break;
-			case 10:;break;
-			case 11:;break;
-			case 12:;break;
-			case 13:;break;
+			case 1:	ve1.llenarVector();break;
+			case 2:	ve1.mostrarVector();break;
+			case 3:	System.out.println(ve1.obtenerPosicionInicio());break;
+			case 4:	System.out.println(ve1.obtenerPosicionFin());break;
+			case 5:	System.out.println(ve1.obtenerCantidadElementos());break;
+			case 6:	ve1.mostrarElementoInicio();;break;
+			case 7:	ve1.mostrarElementoFin();;break;
+			case 8:	
+				System.out.println("tamaño a aumentar: ");
+				int tamaño = ve0.validacionEntero();
+				ve1.aumentarTamañoDelArreglo(tamaño);;break;
+			case 9:
+				System.out.println("tamaño a disminuir: ");
+				int tamaño1 = ve0.validacionEntero();
+				ve1.disminuirTamañoDelArreglo(tamaño1);;break;
+			case 10:
+				System.out.println("posicion: ");
+				int posicion = ve0.validacionEntero();
+				System.out.println("elemento a insertar: ");
+				int elemento = ve0.validacionEntero();
+				ve1.insertarElementoPosicionEspecifica(posicion, elemento);
+				break;
+			case 11:
+				System.out.println("elemento a eliminar:");
+				int elemento1 = ve0.validacionEntero();
+				ve1.eliminarElementoPosicionEspecifica(elemento1);
+				break;
+			case 12:ve1.invertirElVector();break;
+			case 13:salir=true;break;
 			default:break;
 			}
 			
-		} while (salir==false);
-		
-		
-		
-		
+		} while (!salir);
+		System.out.println("hasta pronto!");
 	}
 
 }
