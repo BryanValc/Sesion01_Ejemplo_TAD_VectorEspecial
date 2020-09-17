@@ -61,6 +61,7 @@ class VectorEspecial{
 		}
 		int[] newArray = Arrays.copyOf(edades, edades.length + magnitud);
 		this.setEdades(newArray);
+		System.out.println("el vector se aumentó éxitosamete en "+magnitud);
 	}
 	public void disminuirTamañoDelArreglo(int magnitud) {
 		while (magnitud<1) {
@@ -73,7 +74,7 @@ class VectorEspecial{
 		} catch (NegativeArraySizeException e) {
 			System.out.println("la magnitud no puede ser igual o superior a la longitud original");
 		}
-		
+		System.out.println("el vector se disminuyó éxitosamete en "+magnitud);
 	}
 	public void insertarElementoPosicionEspecifica(int posicion, int elemento) {
 		try {
@@ -89,6 +90,8 @@ class VectorEspecial{
 			this.getEdades()[posicion-1]=0;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			System.out.println("solo se puede tener de 1 a n posiciones, no se puede exceder o ser inferior o igual a 0");
+		} catch (java.util.InputMismatchException e) {
+			System.out.println("solo se pueden ingresar numeros enteros");	
 		}
 	}
 	public void invertirElVector() {
